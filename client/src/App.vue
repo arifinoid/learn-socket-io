@@ -9,6 +9,7 @@
         <v-layout row mb-4 mt-4>
           <v-flex>
             <Graph></Graph>
+            <PopupMessage></PopupMessage>
           </v-flex>
         </v-layout>
       </v-container>
@@ -19,10 +20,12 @@
 
 <script>
 import Graph from "@/components/Graph";
+import PopupMessage from "@/components/PopupMessage";
 
 export default {
   components: {
-    Graph
+    Graph,
+    PopupMessage
   }
 };
 </script>

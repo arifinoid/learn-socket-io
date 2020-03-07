@@ -13,6 +13,7 @@ const io = require("./io").initialize(http);
 const global_socket = require("./io").io();
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.json());
 
 http.listen(port);
 
@@ -29,3 +30,14 @@ const heartbeat = () => {
   logger.debug(`Heartbeat ${pulse}`);
   return pulse;
 };
+
+app.post("/notification", (req, res) => {
+  logger.debug(`Message received: ${req.body.message}`);
+
+  global_socket.emit("POPUP_NOTIFICATION", {
+    message: req.body.message,
+    color: req.body.color
+  });
+
+  res.send();
+});
